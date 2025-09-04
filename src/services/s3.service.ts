@@ -7,6 +7,7 @@ import {
 } from "@aws-sdk/client-s3";
 import { v4 as uuidv4 } from "uuid";
 import dotenv from "dotenv";
+import { logger } from "@untools/logger";
 
 dotenv.config();
 
@@ -34,7 +35,7 @@ export class S3UploadService {
     this.region = process.env.AWS_REGION || "us-east-1";
 
     if (!this.bucketName) {
-      throw new Error("AWS_S3_BUCKET_NAME environment variable is required");
+      logger.error("AWS_S3_BUCKET_NAME environment variable is required");
     }
 
     this.s3Client = new S3Client({

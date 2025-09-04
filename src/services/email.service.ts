@@ -3,6 +3,7 @@
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 import { Transporter } from "nodemailer";
+import { Attachment } from "nodemailer/lib/mailer/index.js";
 
 // Load environment variables
 dotenv.config();
@@ -33,10 +34,7 @@ export interface MonitoringEmailPayload {
   sourceApplication?: string;
   timestamp?: Date;
   metadata?: Record<string, any>;
-  attachments?: Array<{
-    filename: string;
-    content: string | Buffer;
-  }>;
+  attachments?: Array<Attachment>;
   customCredentials?: {
     user: string;
     pass: string;
