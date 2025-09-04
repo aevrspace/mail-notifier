@@ -1,7 +1,10 @@
+// ./src/index.ts
+
 import express from "express";
 import dotenv from "dotenv";
-import emailRouter from "./routes/email.routes.js";
 import cors from "cors";
+import emailRouter from "./routes/email.routes.js";
+import s3Router from "./routes/s3.routes.js";
 
 // Load environment variables
 dotenv.config();
@@ -26,6 +29,7 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" })); // for parsing a
 
 // Routes
 app.use("/api", verifyAccess, emailRouter);
+app.use("/api/s3", verifyAccess, s3Router);
 
 // Health check endpoint
 app.get("/health", (req, res) => {

@@ -1,6 +1,6 @@
+// ./src/services/email.service.ts
+
 import dotenv from "dotenv";
-import fs from "fs";
-import path from "path";
 import nodemailer from "nodemailer";
 import { Transporter } from "nodemailer";
 
