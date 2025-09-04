@@ -13,6 +13,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const verifyAccess = (req, res, next) => {
+  // Always let preflight requests through
+  if (req.method === "OPTIONS") {
+    return next();
+  }
+
   const apiKey = req.headers["x-api-key"];
   if (apiKey === process.env.API_KEY) {
     next();
